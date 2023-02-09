@@ -5,14 +5,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     private EditText appNameEditText;
     private Button launchApp;
+    private ImageView airplane;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
         appNameEditText = findViewById(R.id.app_name_edit_text);
         launchApp = findViewById(R.id.launch_app_btn);
+        airplane = findViewById(R.id.airplane);
 
         launchApp.setOnClickListener(view -> {
             try {
@@ -33,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
             }
         });
+
+        airplane.setOnClickListener(view -> toggleAirplaneMode());
     }
 
     private void runApp(String appName) throws Exception {
@@ -48,5 +55,16 @@ public class MainActivity extends AppCompatActivity {
         }
 
         throw new Exception("Application name is incorrect or app doesn't exist on your device.");
+    }
+
+    private void toggleAirplaneMode() {
+        boolean isEnabled = Settings.System.getInt(getContentResolver(), Settings.Global.AIRPLANE_MODE_ON, 0) == 1;
+
+        Settings.System.putInt(getContentResolver(), Settings.Global.AIRPLANE_MODE_ON, isEnabled ? 0 : 1);
+
+        Intent intent = new Intent(Intent.ACTION_AIRPLANE_MODE_CHANGED);
+        intent.putExtra("state", !isEnabled);
+//        sendBroadcast(intent);
+        Log.d("MY_APP", String.valueOf(isEnabled));
     }
 }
