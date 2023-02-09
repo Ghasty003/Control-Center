@@ -99,6 +99,7 @@
             android:layout_marginTop="15dp">
 
             <ImageView
+                android:id="@+id/wifi"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@drawable/ic_baseline_wifi_24"
