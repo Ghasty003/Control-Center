@@ -4,15 +4,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#80980000"
+    android:padding="20dp"
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/control"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="What do you want to do?"
-        android:textSize="20sp"
-        android:layout_centerHorizontal="true"
+        android:text="Control Center"
+        android:textSize="30sp"
+        android:textColor="#EDE3D7D7"
+    />
+
+    <TextView
+        android:id="@+id/want"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Want to launch an app?"
+        android:textSize="25sp"
+        android:textColor="@color/white"
+        android:layout_below="@id/control"
         android:layout_marginTop="20dp"
     />
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       android:layout_below="@id/want"
+       android:layout_marginTop="20dp">
+
+       <EditText
+           android:id="@+id/app_name_edit_text"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:hint="Type app name"
+           android:layout_weight="2"
+           android:layout_marginEnd="5dp"
+       />
+
+       <Button
+           android:id="@+id/launch_app_btn"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Launch"
+       />
+
+   </LinearLayout>
 
 </RelativeLayout>
