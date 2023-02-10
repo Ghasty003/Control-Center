@@ -11,7 +11,10 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.ColorStateList;
+import android.hardware.camera2.CameraAccessException;
+import android.hardware.camera2.CameraManager;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
@@ -24,7 +27,9 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText appNameEditText;
     private Button launchApp;
-    private ImageView airplane, wifi, bluetooth;
+    private ImageView airplane, wifi, bluetooth, flashLight;
+
+    private boolean isFlashLightOn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         airplane = findViewById(R.id.airplane);
         wifi = findViewById(R.id.wifi);
         bluetooth = findViewById(R.id.bluetooth);
+        flashLight = findViewById(R.id.flash_light);
 
         launchApp.setOnClickListener(view -> {
             try {
@@ -52,6 +58,13 @@ public class MainActivity extends AppCompatActivity {
         airplane.setOnClickListener(view -> toggleAirplaneMode());
         wifi.setOnClickListener(view -> toggleWifiMode());
         bluetooth.setOnClickListener(view -> toggleBluetoothMode());
+        flashLight.setOnClickListener(view -> {
+            if (isFlashLightOn) {
+                turnOffFlashLight();
+            } else {
+                turnOnFlashLight();
+            }
+        });
     }
 
     private void runApp(String appName) throws Exception {
@@ -67,6 +80,36 @@ public class MainActivity extends AppCompatActivity {
         }
 
         throw new Exception("Application name is incorrect or app doesn't exist on your device.");
+    }
+
+    private void turnOnFlashLight() {
+        isFlashLightOn = true;
+        flashLight.setBackground(getDrawable(R.drawable.active_item_bg));
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            try {
+                CameraManager camera = (CameraManager) getApplicationContext().getSystemService(Context.CAMERA_SERVICE);
+                String cameraId = camera.getCameraIdList()[0];
+                camera.setTorchMode(cameraId, true);
+            } catch (CameraAccessException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void turnOffFlashLight() {
+        isFlashLightOn = false;
+        flashLight.setBackground(getDrawable(R.drawable.icon_bg));
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            try {
+                CameraManager camera = (CameraManager) getApplicationContext().getSystemService(Context.CAMERA_SERVICE);
+                String cameraId = camera.getCameraIdList()[0];
+                camera.setTorchMode(cameraId, false);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void toggleWifiMode() {
@@ -108,5 +151,11 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("state", !isEnabled);
 //        sendBroadcast(intent);
         Log.d("MY_APP", String.valueOf(isEnabled));
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        turnOffFlashLight();
     }
 }
