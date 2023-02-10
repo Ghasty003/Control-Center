@@ -84,11 +84,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void toggleBluetoothMode() {
         BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        final boolean isEnabled = bluetoothAdapter.isEnabled();
+        boolean isEnabled = bluetoothAdapter.isEnabled();
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
+
+        Log.d("MY_APP", ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH) + "is permission");
 
         if (isEnabled) {
             bluetoothAdapter.disable();
