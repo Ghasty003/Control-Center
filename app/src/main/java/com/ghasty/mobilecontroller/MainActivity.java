@@ -90,8 +90,6 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        Log.d("MY_APP", ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH) + "is permission");
-
         if (isEnabled) {
             bluetoothAdapter.disable();
             bluetooth.setBackground(getDrawable(R.drawable.icon_bg));
