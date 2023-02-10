@@ -2,8 +2,11 @@ package com.ghasty.mobilecontroller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
+import android.content.res.ColorStateList;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
@@ -16,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText appNameEditText;
     private Button launchApp;
-    private ImageView airplane;
+    private ImageView airplane, wifi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         appNameEditText = findViewById(R.id.app_name_edit_text);
         launchApp = findViewById(R.id.launch_app_btn);
         airplane = findViewById(R.id.airplane);
+        wifi = findViewById(R.id.wifi);
 
         launchApp.setOnClickListener(view -> {
             try {
@@ -40,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         airplane.setOnClickListener(view -> toggleAirplaneMode());
+        wifi.setOnClickListener(view -> toggleWifiMode());
     }
 
     private void runApp(String appName) throws Exception {
@@ -55,6 +60,19 @@ public class MainActivity extends AppCompatActivity {
         }
 
         throw new Exception("Application name is incorrect or app doesn't exist on your device.");
+    }
+
+    private void toggleWifiMode() {
+        WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        boolean isEnabled = wifiManager.isWifiEnabled();
+
+        if (isEnabled) {
+            wifiManager.setWifiEnabled(false);
+            wifi.setBackground(getDrawable(R.drawable.icon_bg));
+        } else {
+            wifiManager.setWifiEnabled(true);
+            wifi.setBackground(getDrawable(R.drawable.active_item_bg));
+        }
     }
 
     private void toggleAirplaneMode() {
