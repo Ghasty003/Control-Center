@@ -147,6 +147,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linear_3"
         android:layout_width="140dp"
         android:layout_height="50dp"
         android:orientation="horizontal"
@@ -236,14 +237,23 @@
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/airplane"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/ic_baseline_airplanemode_active_24"
-        app:tint="@color/white"
-        android:background="@drawable/icon_bg"
-        android:padding="5dp"
-        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/linear_3"
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            android:id="@+id/airplane"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_baseline_airplanemode_active_24"
+            app:tint="@color/white"
+            android:background="@drawable/linear_bg"
+            android:padding="5dp"
+            />
+
+    </LinearLayout>
 
 </RelativeLayout>
