@@ -1,9 +1,14 @@
 package com.ghasty.mobilecontroller;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.ColorStateList;
 import android.net.wifi.WifiManager;
@@ -19,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText appNameEditText;
     private Button launchApp;
-    private ImageView airplane, wifi;
+    private ImageView airplane, wifi, bluetooth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         launchApp = findViewById(R.id.launch_app_btn);
         airplane = findViewById(R.id.airplane);
         wifi = findViewById(R.id.wifi);
+        bluetooth = findViewById(R.id.bluetooth);
 
         launchApp.setOnClickListener(view -> {
             try {
@@ -45,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         airplane.setOnClickListener(view -> toggleAirplaneMode());
         wifi.setOnClickListener(view -> toggleWifiMode());
+        bluetooth.setOnClickListener(view -> toggleBluetoothMode());
     }
 
     private void runApp(String appName) throws Exception {
@@ -72,6 +79,23 @@ public class MainActivity extends AppCompatActivity {
         } else {
             wifiManager.setWifiEnabled(true);
             wifi.setBackground(getDrawable(R.drawable.active_item_bg));
+        }
+    }
+
+    private void toggleBluetoothMode() {
+        BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        final boolean isEnabled = bluetoothAdapter.isEnabled();
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+
+        if (isEnabled) {
+            bluetoothAdapter.disable();
+            bluetooth.setBackground(getDrawable(R.drawable.icon_bg));
+        } else {
+            bluetoothAdapter.enable();
+            bluetooth.setBackground(getDrawable(R.drawable.active_item_bg));
         }
     }
 
