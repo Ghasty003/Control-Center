@@ -56,74 +56,108 @@
    </LinearLayout>
 
     <LinearLayout
-        android:layout_width="130dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:orientation="horizontal"
+        android:layout_below="@id/linear_1"
+        android:background="@drawable/linear_bg">
+
+        <ImageView
+            android:id="@+id/wifi"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_baseline_wifi_24"
+            app:tint="@color/white"
+            android:padding="5dp"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wi-Fi"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+            />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Off"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+            />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
         android:layout_below="@id/linear_1"
         android:background="@drawable/linear_bg"
-        android:padding="10dp">
+        android:layout_alignParentEnd="true"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/bluetooth"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_baseline_bluetooth_24"
+            app:tint="@color/white"
+            android:padding="5dp"
+        />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <ImageView
-                android:id="@+id/airplane"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/ic_baseline_airplanemode_active_24"
-                app:tint="@color/white"
-                android:background="@drawable/icon_bg"
-                android:padding="5dp"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="3dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bluetooth"
+                android:textColor="@color/white"
+                android:textSize="14sp"
             />
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                />
-            <ImageView
-                android:id="@+id/flash_light"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/ic_baseline_highlight_24"
-                app:tint="@color/white"
-                android:background="@drawable/icon_bg"
-                android:padding="5dp"
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Off"
+                android:textColor="@color/white"
+                android:textSize="14sp"
             />
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="15dp">
-
-            <ImageView
-                android:id="@+id/wifi"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/ic_baseline_wifi_24"
-                app:tint="@color/white"
-                android:background="@drawable/icon_bg"
-                android:padding="5dp"
-            />
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1"
-                />
-            <ImageView
-                android:id="@+id/bluetooth"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/ic_baseline_bluetooth_24"
-                app:tint="@color/white"
-                android:background="@drawable/icon_bg"
-                android:padding="5dp"
-            />
-
-        </LinearLayout>
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/airplane"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_baseline_airplanemode_active_24"
+        app:tint="@color/white"
+        android:background="@drawable/linear_bg"
+        android:padding="5dp"
+        />
+
+    <ImageView
+        android:id="@+id/flash_light"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_baseline_highlight_24"
+        app:tint="@color/white"
+        android:background="@drawable/icon_bg"
+        android:padding="5dp"
+        />
 
 </RelativeLayout>
