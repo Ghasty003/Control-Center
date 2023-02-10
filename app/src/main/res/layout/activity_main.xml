@@ -151,7 +151,8 @@
         android:layout_below="@id/linear_2"
         android:background="@drawable/linear_bg"
         android:layout_alignParentStart="true"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:layout_marginTop="20dp">
 
         <ImageView
             android:id="@+id/bluetooth"
@@ -188,21 +189,56 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_below="@id/linear_2"
+        android:background="@drawable/linear_bg"
+        android:layout_alignParentEnd="true"
+        android:gravity="center_vertical"
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            android:id="@+id/flash_light"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_baseline_highlight_24"
+            app:tint="@color/white"
+            android:padding="5dp"
+        />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="3dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Flashlight"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Off"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
     <ImageView
         android:id="@+id/airplane"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:src="@drawable/ic_baseline_airplanemode_active_24"
-        app:tint="@color/white"
-        android:background="@drawable/linear_bg"
-        android:padding="5dp"
-        />
-
-    <ImageView
-        android:id="@+id/flash_light"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/ic_baseline_highlight_24"
         app:tint="@color/white"
         android:background="@drawable/icon_bg"
         android:padding="5dp"
