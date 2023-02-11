@@ -193,6 +193,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/flash_light"
         android:layout_width="140dp"
         android:layout_height="50dp"
         android:orientation="horizontal"
@@ -203,7 +204,6 @@
         android:layout_marginTop="20dp">
 
         <ImageView
-            android:id="@+id/flash_light"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/ic_baseline_highlight_24"
@@ -226,6 +226,7 @@
                 />
 
             <TextView
+                android:id="@+id/flash_light_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Off"
