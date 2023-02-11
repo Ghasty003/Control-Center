@@ -22,12 +22,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     private View dataView, wifiView;
     private EditText appNameEditText;
+    private TextView wifiText;
     private Button launchApp;
     private ImageView airplane, bluetooth, flashLight;
 
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         launchApp = findViewById(R.id.launch_app_btn);
         dataView = findViewById(R.id.data_connection);
         wifiView = findViewById(R.id.wifi);
+        wifiText = findViewById(R.id.wif_text);
         airplane = findViewById(R.id.airplane);
         bluetooth = findViewById(R.id.bluetooth);
         flashLight = findViewById(R.id.flash_light);
@@ -122,9 +125,11 @@ public class MainActivity extends AppCompatActivity {
         if (isEnabled) {
             wifiManager.setWifiEnabled(false);
             wifiView.setBackground(getDrawable(R.drawable.linear_bg));
+            wifiText.setText("Off");
         } else {
             wifiManager.setWifiEnabled(true);
             wifiView.setBackground(getDrawable(R.drawable.active_item_bg));
+            wifiText.setText("On");
         }
     }
 
