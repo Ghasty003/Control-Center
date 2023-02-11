@@ -27,9 +27,9 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private View dataView, wifiView, bluetoothView;
+    private View dataView, wifiView, bluetoothView, flashLightView;
     private EditText appNameEditText;
-    private TextView wifiText, bluetoothText;
+    private TextView wifiText, bluetoothText, flashLightText;
     private Button launchApp;
     private ImageView airplane, flashLight;
 
@@ -48,7 +48,8 @@ public class MainActivity extends AppCompatActivity {
         airplane = findViewById(R.id.airplane);
         bluetoothView = findViewById(R.id.bluetooth);
         bluetoothText = findViewById(R.id.bluetooth_text);
-        flashLight = findViewById(R.id.flash_light);
+        flashLightView = findViewById(R.id.flash_light);
+        flashLightText = findViewById(R.id.flash_light_text);
 
         launchApp.setOnClickListener(view -> {
             try {
@@ -64,8 +65,8 @@ public class MainActivity extends AppCompatActivity {
 
         airplane.setOnClickListener(view -> toggleAirplaneMode());
         wifiView.setOnClickListener(view -> toggleWifiMode());
-        bluetooth.setOnClickListener(view -> toggleBluetoothMode());
-        flashLight.setOnClickListener(view -> {
+        bluetoothView.setOnClickListener(view -> toggleBluetoothMode());
+        flashLightView.setOnClickListener(view -> {
             if (isFlashLightOn) {
                 turnOffFlashLight();
             } else {
@@ -91,7 +92,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void turnOnFlashLight() {
         isFlashLightOn = true;
-        flashLight.setBackground(getDrawable(R.drawable.active_item_bg));
+        flashLightView.setBackground(getDrawable(R.drawable.active_item_bg));
+        flashLightText.setText("On");
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             try {
@@ -106,7 +108,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void turnOffFlashLight() {
         isFlashLightOn = false;
-        flashLight.setBackground(getDrawable(R.drawable.icon_bg));
+        flashLightView.setBackground(getDrawable(R.drawable.linear_bg));
+        flashLightText.setText("Off");
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             try {
