@@ -27,9 +27,9 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private View dataView, wifiView;
+    private View dataView, wifiView, bluetoothView;
     private EditText appNameEditText;
-    private TextView wifiText;
+    private TextView wifiText, bluetoothText;
     private Button launchApp;
     private ImageView airplane, bluetooth, flashLight;
 
@@ -46,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
         wifiView = findViewById(R.id.wifi);
         wifiText = findViewById(R.id.wif_text);
         airplane = findViewById(R.id.airplane);
-        bluetooth = findViewById(R.id.bluetooth);
+        bluetoothView = findViewById(R.id.bluetooth);
+        bluetoothText = findViewById(R.id.bluetooth_text);
         flashLight = findViewById(R.id.flash_light);
 
         launchApp.setOnClickListener(view -> {
@@ -143,10 +144,13 @@ public class MainActivity extends AppCompatActivity {
 
         if (isEnabled) {
             bluetoothAdapter.disable();
-            bluetooth.setBackground(getDrawable(R.drawable.icon_bg));
+            bluetoothView.setBackground(getDrawable(R.drawable.linear_bg));
+            bluetoothText.setText("Off");
+
         } else {
             bluetoothAdapter.enable();
-            bluetooth.setBackground(getDrawable(R.drawable.active_item_bg));
+            bluetoothView.setBackground(getDrawable(R.drawable.active_item_bg));
+            bluetoothText.setText("On");
         }
     }
 
