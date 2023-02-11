@@ -17,6 +17,7 @@ import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,11 +26,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 public class MainActivity extends AppCompatActivity {
 
     private View dataView, wifiView, bluetoothView, flashLightView;
     private EditText appNameEditText;
-    private TextView wifiText, bluetoothText, flashLightText;
+    private TextView wifiText, bluetoothText, flashLightText, dataText;
     private Button launchApp;
     private ImageView airplane;
 
@@ -43,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         appNameEditText = findViewById(R.id.app_name_edit_text);
         launchApp = findViewById(R.id.launch_app_btn);
         dataView = findViewById(R.id.data_connection);
+        dataText = findViewById(R.id.data_text);
         wifiView = findViewById(R.id.wifi);
         wifiText = findViewById(R.id.wif_text);
         airplane = findViewById(R.id.airplane);
@@ -64,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         airplane.setOnClickListener(view -> toggleAirplaneMode());
+        dataView.setOnClickListener(view -> toggleDataMode());
         wifiView.setOnClickListener(view -> toggleWifiMode());
         bluetoothView.setOnClickListener(view -> toggleBluetoothMode());
         flashLightView.setOnClickListener(view -> {
@@ -88,6 +94,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         throw new Exception("Application name is incorrect or app doesn't exist on your device.");
+    }
+
+    private void toggleDataMode() {
+
     }
 
     private void turnOnFlashLight() {
