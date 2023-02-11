@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText appNameEditText;
     private TextView wifiText, bluetoothText, flashLightText;
     private Button launchApp;
-    private ImageView airplane, flashLight;
+    private ImageView airplane;
 
     private boolean isFlashLightOn;
 
