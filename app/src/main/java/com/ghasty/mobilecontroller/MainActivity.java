@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private View dataView, wifiView;
     private EditText appNameEditText;
     private Button launchApp;
-    private ImageView airplane, wifi, bluetooth, flashLight;
+    private ImageView airplane, bluetooth, flashLight;
 
     private boolean isFlashLightOn;
 
