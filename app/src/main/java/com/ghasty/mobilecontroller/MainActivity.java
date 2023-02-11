@@ -18,6 +18,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -25,6 +26,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    private View dataView, wifiView;
     private EditText appNameEditText;
     private Button launchApp;
     private ImageView airplane, wifi, bluetooth, flashLight;
@@ -38,8 +40,9 @@ public class MainActivity extends AppCompatActivity {
 
         appNameEditText = findViewById(R.id.app_name_edit_text);
         launchApp = findViewById(R.id.launch_app_btn);
+        dataView = findViewById(R.id.data_connection);
+        wifiView = findViewById(R.id.wifi);
         airplane = findViewById(R.id.airplane);
-        wifi = findViewById(R.id.wifi);
         bluetooth = findViewById(R.id.bluetooth);
         flashLight = findViewById(R.id.flash_light);
 
@@ -56,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         airplane.setOnClickListener(view -> toggleAirplaneMode());
-        wifi.setOnClickListener(view -> toggleWifiMode());
+        wifiView.setOnClickListener(view -> toggleWifiMode());
         bluetooth.setOnClickListener(view -> toggleBluetoothMode());
         flashLight.setOnClickListener(view -> {
             if (isFlashLightOn) {
@@ -118,10 +121,10 @@ public class MainActivity extends AppCompatActivity {
 
         if (isEnabled) {
             wifiManager.setWifiEnabled(false);
-            wifi.setBackground(getDrawable(R.drawable.icon_bg));
+            wifiView.setBackground(getDrawable(R.drawable.linear_bg));
         } else {
             wifiManager.setWifiEnabled(true);
-            wifi.setBackground(getDrawable(R.drawable.active_item_bg));
+            wifiView.setBackground(getDrawable(R.drawable.active_item_bg));
         }
     }
 
